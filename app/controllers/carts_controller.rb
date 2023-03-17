@@ -1,6 +1,7 @@
 class CartsController < ApplicationController
 
   def show
+    @cart_count = cookies[:cart].presence == "{}"
   end
 
   def add_item
