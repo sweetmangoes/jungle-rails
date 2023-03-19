@@ -7,13 +7,13 @@
     <br>
     <p><%= product.description %></p>
   </td>
-  <td>
-    $<%= product.price %>
+  <td style="color: green; font-weight: bold">
+    <%= humanized_money_with_symbol product.price %>
   </td>
   <td>
     <%= order.quantity %>
   </td>
-  <td>
-    $<%= (order.total_price_cents / 100.0) %>
+  <td style="color: green; font-weight: bold">
+    <%= humanized_money_with_symbol (order.total_price_cents / 100.0) %>
   </td>
 </tr>
