@@ -31,16 +31,17 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
           > %>
-            <%# Categories %>
+          <%# Categories %>
           <%# </a>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown"> %>
-            <% Category.all.each do |category| %>
+          <% Category.all.each do |category| %>
             <li class="nav-item">
-              <%= link_to category.name, category, class: "nav-link" %>
+            <%= link_to category.name, category, class: "nav-link" %>
             </li>
             <% end %>
-          <%# </ul>
-        </li> %>
+            <li href="about'#'index"> About </li> 
+            <%# </ul>
+            </li> %>
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
