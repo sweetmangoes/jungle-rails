@@ -45,14 +45,24 @@
             <%# </ul>
             </li> %>
       </ul>
+      <ul class="navbar-nav">
             <% if current_user%>
-              <a class="nav-link"> 
-                Signed in as <%= current_user.name%> | <%= link_to "Logout", '/logout' %> 
-              </a>
-            <%else%>          
+              <li>
+                <a class="nav-link"> 
+                  Signed in: <%= current_user.email%>
+                </a>
+              </li>
+              <li>
+                <a class="nav-link" href="/logout">
+                  Logout
+                </a>
+              </li>
+            <%else%>
+                      
             <a class="nav-link" href="/login">Login</a>
             <a class="nav-link" href="/signup">Register</a>
             <%end%>
+      </ul>
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
           <a
