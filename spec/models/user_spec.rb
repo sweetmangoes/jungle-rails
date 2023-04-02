@@ -11,7 +11,10 @@ RSpec.describe User, type: :model do
   end 
 
   describe '.authenticate_with_credentials' do
-    # examples for this class method here
+    # return proper credentials
+    # wrong credentials
+    # leading/trailing spaces 
+    # return user with capitalized letters in the email
   end
 
 end
