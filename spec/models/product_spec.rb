@@ -46,7 +46,7 @@ RSpec.describe Product, type: :model do
     end
 
     #  validates :quantity, presence: true
-    it 'is not valid without a  quantity' do
+    it 'is not valid without a quantity' do
       product = Product.create(
           name: 'quantity',
           description: 'Description',
@@ -61,9 +61,9 @@ RSpec.describe Product, type: :model do
     end
 
     #  validates :category, presence: true
-    it 'is not valid without a  quantity' do
+    it 'is not valid without a category' do
       product = Product.create(
-          name: 'quantity',
+          name: 'category',
           description: 'Description',
           category_id: nil,
           quantity: 4,
