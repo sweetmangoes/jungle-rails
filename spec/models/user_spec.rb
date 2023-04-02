@@ -56,18 +56,65 @@ RSpec.describe User, type: :model do
     end
 
     # existing email within database
-    # it 'email already exists in the database' do 
-    #   user = User.create(
-    #     first_name: 'Chris',
-    #     last_name: 'Alph',
-    #     email: 'test@test.com',
-    #     password: nil, 
-    #     password_confirmation: nil   
-    #   )
-    #   # puts user.errors.full_messages
-    #   expect(user.errors.full_messages[0]).to eq("Password can't be blank")
-    # end 
-    # case sensitive 
+    it 'email already exists in the database' do 
+      existing_user =  User.create(
+        first_name: 'Chris',
+        last_name: 'Alph',
+        email: 'test@test.com',
+        password: '1234', 
+        password_confirmation: '1234'   
+      )
+
+      user = User.create(
+        first_name: 'Chris',
+        last_name: 'Alph',
+        email: 'test@test.com',
+        password: '1234', 
+        password_confirmation: '1234' 
+      )
+      # puts user.errors.full_messages
+      expect(user.errors.full_messages[0]).to eq("Email has already been taken")
+    end 
+
+    # user submits without an email
+    it 'user submited without an email' do 
+      user = User.create(
+        first_name: 'Chris',
+        last_name: 'Alph',
+        email: nil,
+        password: '1234', 
+        password_confirmation: '1234'    
+      )
+      # puts user.errors.full_messages
+      expect(user.errors.full_messages[0]).to eq("Email can't be blank")
+    end 
+
+    # user submits without a first name
+    it 'user submited without a first name' do 
+      user = User.create(
+        first_name: nil,
+        last_name: 'Alph',
+        email: 'test@car.ca',
+        password: '1234', 
+        password_confirmation: '1234'    
+      )
+      # puts user.errors.full_messages
+      expect(user.errors.full_messages[0]).to eq("First name can't be blank")
+    end 
+
+    # user submits without a last name
+    it 'user submited without a first name' do 
+      user = User.create(
+        first_name: 'chris',
+        last_name: nil,
+        email: 'test@car.ca',
+        password: '1234', 
+        password_confirmation: '1234'    
+      )
+      # puts user.errors.full_messages
+      expect(user.errors.full_messages[0]).to eq("Last name can't be blank")
+    end 
+
   end 
 
   describe '.authenticate_with_credentials' do
