@@ -46,7 +46,35 @@ RSpec.describe Product, type: :model do
     end
 
     #  validates :quantity, presence: true
+    it 'is not valid without a  quantity' do
+      product = Product.create(
+          name: 'quantity',
+          description: 'Description',
+          category_id: 1,
+          quantity: nil,
+          image: 'https://images.pexels.com/photos/53435/tree-oak-landscape-view-53435.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          price: 25.99
+        )
+        
+      #  puts product.errors.full_messages
+      expect(product.errors.full_messages[0]).to eq("Quantity can't be blank")
+    end
+
     #  validates :category, presence: true
+    it 'is not valid without a  quantity' do
+      product = Product.create(
+          name: 'quantity',
+          description: 'Description',
+          category_id: nil,
+          quantity: 4,
+          image: 'https://images.pexels.com/photos/53435/tree-oak-landscape-view-53435.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+          price: 25.99
+        )
+        
+      #  puts product.errors.full_messages
+      expect(product.errors.full_messages[0]).to eq("Category must exist")
+    end
+
   end
 
 end
