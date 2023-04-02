@@ -114,14 +114,60 @@ RSpec.describe User, type: :model do
       # puts user.errors.full_messages
       expect(user.errors.full_messages[0]).to eq("Last name can't be blank")
     end 
-
   end 
 
-  describe '.authenticate_with_credentials' do
+  describe 'authenticate_with_credentials' do
     # return proper credentials
+    it 'user has correct credentials' do
+      user = User.create(
+        first_name: 'Chris',
+        last_name: 'Alph',
+        email: 'test@car.ca',
+        password: '1234', 
+        password_confirmation: '1234'    
+      )
+      # puts user.authenticate_with_credentials
+      expect(User.authenticate_with_credentials('test@car.ca', '1234')).to eq(user)
+    end
+
     # wrong credentials
-    # leading/trailing spaces 
+    it 'user incorrect credentials' do
+      user = User.create(
+        first_name: 'Chris',
+        last_name: 'Alph',
+        email: 'test@car.ca',
+        password: '1234', 
+        password_confirmation: '1234'    
+      )
+      # puts user.authenticate_with_credentials
+      expect(User.authenticate_with_credentials('test@car.ca', 'abcd')).not_to eq(user)
+    end
+
+    # leading/trailing spaces
+    it 'user emails with leading/trailing spaces in the email authenticates ' do
+      user = User.create(
+        first_name: 'Chris',
+        last_name: 'Alph',
+        email: 'test@car.ca',
+        password: '1234', 
+        password_confirmation: '1234'    
+      )
+      # puts user.authenticate_with_credentials
+      expect(User.authenticate_with_credentials(' test@car.ca  ', '1234')).to eq(user)
+    end
+
     # return user with capitalized letters in the email
+    it 'user emails with capitalized characters in the email authenticates ' do
+      user = User.create(
+        first_name: 'Chris',
+        last_name: 'Alph',
+        email: 'test@car.ca',
+        password: '1234', 
+        password_confirmation: '1234'    
+      )
+      # puts user.authenticate_with_credentials
+      expect(User.authenticate_with_credentials(' tEst@caR.ca', '1234')).to eq(user)
+    end
   end
 
 end

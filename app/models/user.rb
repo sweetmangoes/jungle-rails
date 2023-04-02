@@ -5,13 +5,15 @@ class User < ApplicationRecord
   validates :email, :uniqueness => {:case_sensitive => false}, presence: true
   validates :password, length: {minimum: 4}, confirmation: true
 
-  def self.authenticate_with_credentials(email,password)
-    user_email = email.downcase.strip
-    @user = User.find_by(email: user_email)
-    if @user && @user.authenticate(password)
-      @user
+  def self.authenticate_with_credentials(email, password)
+    email = email.strip.downcase
+     
+    user = User.find_by_email(email)
+
+    if user && user.authenticate(password)
+      user
     elsif 
-      @user.errors.add(:password, "password not matching")
+      user.errors.add(:password, "password not matching")
       nil
     end
   end
