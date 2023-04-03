@@ -10,11 +10,5 @@ describe('product details', () => {
     cy.get('img[alt="Enirthelda"]').click(); 
     cy.url().should('include', '/products/5');
   });
-
-  // it("going to the product page", () => {
-  //   // clicks on product partials 
-  //   cy.get('nav').contains('Trees').click();
-  //   cy.url().should('include', '/categories/3');
-  // });
-
 })
+
